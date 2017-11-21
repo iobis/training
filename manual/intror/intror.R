@@ -132,11 +132,11 @@ unlink(c("data.txt", "data.csv", "data2.csv"))
 
 # Excel files
 
-library(xlsx) # install.packages("xlsx")
-write.xlsx(data, "data.xlsx", sheetName="intro", row.names = FALSE)
-data <- read.xlsx("data.xlsx", 1, stringsAsFactors=FALSE)
-data <- read.xlsx("data.xlsx", sheetName="intro", stringsAsFactors=FALSE)
-unlink("data.xlsx")
+library(openxlsx) # install.packages("openxlsx")
+data <- data.frame(x = 10:15, y = 40:45) # generate some data
+write.xlsx(data, "data.xlsx", sheetName = "intro", row.names = FALSE)
+data2 <- read.xlsx("data.xlsx", 1)
+data2 <- read.xlsx("data.xlsx", sheet = "intro")
 
 # Reading from ZIP files
 temp <- tempfile()
