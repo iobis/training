@@ -8,16 +8,16 @@ library(maps)
 world <- map_data("world")
 
 ggplot() +
-  geom_polygon(data = world, aes(x = long, y = lat, group = group), fill = "#dddddd") +
+  geom_polygon(data = world, aes(x = long, y = lat, group = group), fill = "#bbbbbb") +
   geom_point(data = molram, aes(x = decimalLongitude, y = decimalLatitude))
 
 ggplot() +
-  geom_polygon(data = world, aes(x = long, y = lat, group = group), fill = "#dddddd") +
+  geom_polygon(data = world, aes(x = long, y = lat, group = group), fill = "#bbbbbb") +
   geom_point(data = molram, aes(x = decimalLongitude, y = decimalLatitude)) +
   coord_fixed(1)
 
 ggplot() +
-  geom_polygon(data = world, aes(x = long, y = lat, group = group), fill = "#dddddd") +
+  geom_polygon(data = world, aes(x = long, y = lat, group = group), fill = "#bbbbbb") +
   geom_point(data = molram, aes(x = decimalLongitude, y = decimalLatitude)) +
   coord_fixed(1, xlim = c(0, 180), ylim = c(-60, 0))
 
@@ -37,7 +37,7 @@ ggplot() +
   geom_histogram(data = dor, aes(x = yearcollected))
 
 ggplot() +
-  geom_histogram(data = dor, aes(x = yearcollected), binwidth = 2)
+  geom_histogram(data = dor, aes(x = yearcollected), binwidth = 1)
 
 ggplot() +
   geom_histogram(data = dor, aes(x = yearcollected, fill = family), binwidth = 2) +
@@ -69,7 +69,7 @@ abrseg <- occurrence("Abra segmentum")
 
 leaflet() %>%
   addTiles("https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png") %>%
-  addCircleMarkers(lat = abrseg$decimalLatitude, lng = abrseg$decimalLongitude, radius = 3.5, weight = 0, fillOpacity = 1, fillColor = "#cc3300")
+  addCircleMarkers(lat = abrseg$decimalLatitude, lng = abrseg$decimalLongitude, radius = 3.5, weight = 0, fillOpacity = 0.2, fillColor = "#336699")
 
 library(robis)
 library(leaflet)
