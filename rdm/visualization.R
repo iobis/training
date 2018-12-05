@@ -19,9 +19,11 @@ library(ggmap)
 
 pol <- occurrence("Polychaeta", geometry = "POLYGON ((2.56119 51.07506, 2.38953 51.27051, 3.08167 51.55573, 3.32062 51.43090, 3.36731 51.35720, 2.56119 51.07506))")
 
+
 ggplot(pol %>% filter(!is.na(order))) +
   geom_bar(aes(x = yearcollected, fill = order), width = 1) +
-  scale_fill_brewer(palette = "Paired", na.value = "#cccccc") +
+  scale_fill_brewer(palette = "Spectral", na.value = "#cccccc") +
+  facet_grid(institutionCode ~ order) +
   xlim(1950, 2017)
 
 ggplot(pol %>% filter(!is.na(order), institutionCode %in% c("ILVO", "UGent"))) +
@@ -38,7 +40,7 @@ plot(l4$individualCount)
 acacla <- l4 %>% filter(aphiaID == 149755, yearcollected <= 2006) %>% mutate(time = decimal_date(as.Date(eventDate)))
 
 ggplot(acacla) +
-  geom_point(aes(x = time, y = individualCount))
+  geom_line(aes(x = time, y = individualCount))
 
 ggplot(acacla) +
   geom_point(aes(x = time %% 1, y = individualCount))
@@ -47,6 +49,7 @@ ggplot(acacla) +
 
 mod <- gam(data = acacla, log(individualCount) ~ s(time, bs="tp", k=10) + s(time %% 1, bs="cc", k=4))
 plot(mod, pages = 1, residuals = T, pch = 19, cex = 0.25, scheme = 1, col = "#FF8000", shade = T, shade.col = "gray90")
+#qq.gam(mod)
 
 # leaflet - http://leaflet-extras.github.io/leaflet-providers/preview
 
@@ -54,7 +57,7 @@ abrseg <- occurrence("Abra segmentum")
 
 leaflet() %>%
   addTiles("https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png") %>%
-  addCircleMarkers(lat = abrseg$decimalLatitude, lng = abrseg$decimalLongitude, radius = 3.5, weight = 0, fillOpacity = 1, fillColor = "#cc3300")
+  addCircleMarkers(lat = abrseg$decimalLatitude, lng = abrseg$decimalLongitude, radius = 3.5, weight = 0, fillOpacity = 1, fillColor = "#336699")
 
 # quality flags
 
