@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: If you use this work, please cite it as below.
+title: Training
+type: dataset
+abstract: OBIS training materials
+url: https://github.com/iobis/training
+license: CC-BY-IGO-4.0
+authors:
+  - given-names: Pieter
+    family-names: Provoost
+    orcid: "https://orcid.org/0000-0002-4236-0384"
+  - given-names: Samuel
+    family-names: Bosch
+  - given-names: Ward
+    family-names: Appeltans
+    orcid: "https://orcid.org/0000-0002-3237-4547"
+  - name: Intergovernmental Oceanographic Commission of UNESCO
+    alias: IOC-UNESCO
+    website: "https://obis.org"
+keywords:
+  - obis-training-workshop
+date-released: 2018-12-05
